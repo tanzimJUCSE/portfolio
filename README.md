@@ -108,10 +108,42 @@ That's it. This is where you will do all future edits.
 Everything below happens at [app.pagescms.org](https://app.pagescms.org). Save, wait about a minute,
 refresh your site. No other steps.
 
+> Requires Step 5. Until you connect the admin panel, you can make the same changes by editing the
+> files under `src/data/` directly on github.com — click a file, then the pencil icon, then **Commit
+> changes**. It publishes exactly the same way; the admin panel just gives you forms instead of text.
+
+The one rule worth internalising: **the sidebar section is the page it feeds.** Publications feeds the
+publications page, Awards feeds the awards page, Site settings feeds the homepage and everything
+shared across pages. If you can find the section, you can change what it shows.
+
+### Fixing or deleting something that is already there
+
+This is the most common edit and it works identically everywhere.
+
+1. Open the matching section in the sidebar — **Education** for a degree, **Publications** for a
+   paper, **Awards** for a prize.
+2. Click the entry you want to change. Every field becomes an editable box.
+3. To **reword** something, type over it. To **delete one line** from a list of details, clear that
+   line or use the small **×** beside it. To **remove the whole entry**, use the **⋯** or trash
+   control on the entry itself.
+4. **Save**.
+
+Worked example — removing "3rd position in class" from your bachelor's degree: **Education** → the
+Jahangirnagar University entry → **Details** → delete that line, leaving `CGPA 3.79` → **Save**.
+Nothing else on the site has to change, because the page is generated from that one field.
+
+Anything you leave empty disappears from the site rather than rendering as a blank space, so clearing
+a field is a safe way to hide something.
+
 ### A paper got accepted
 
 1. **Publications → Add an entry**.
 2. Fill in Title, Authors, Journal or conference, Year, Type, Status.
+   - **Authors** — comma separated, in publication order. Your own name is bolded automatically, so
+     type it the same way it appears in Site settings.
+   - **Status** — `Under review` files it under "Articles under peer review". Change it to
+     `Accepted`, then `Published`, as the paper progresses. That single field decides which section
+     of the page it appears in.
 3. Optional extras: publisher link, preprint link, impact factor, CORE rank.
 4. Turn on **Feature on homepage** if you want it in the homepage highlights.
 5. For papers you cannot share publicly (GOMACTech, for example), turn on
@@ -119,7 +151,8 @@ refresh your site. No other steps.
    restricted" notice and no link.
 6. **Save**.
 
-The publication count, the homepage statistics, and the year grouping all update themselves.
+You never touch a count or a heading. The publication total, the homepage statistics, the year
+grouping, and the peer-review section are all derived from the entries themselves.
 
 ### Quick announcement
 
