@@ -321,6 +321,20 @@ content:
           - { name: venue, label: Venue, type: string }
           - { name: location, label: Location, type: string }
           - { name: date, label: Date, type: string }
+      - name: links
+        label: Links
+        type: object
+        description: Optional. Slides, a recording, or the event page.
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Button text
+            type: string
+            description: For example "Slides". Defaults to "View" if left empty.
+          - { name: url, label: Address, type: string }
 
   # ---------------------------------------------------------------- Awards
   - name: awards
@@ -337,6 +351,20 @@ content:
         label: Details
         type: string
         list: true
+      - name: links
+        label: Links
+        type: object
+        description: Optional. Results pages, news coverage, anything worth linking to.
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Button text
+            type: string
+            description: For example "Competition results". Defaults to "View" if left empty.
+          - { name: url, label: Address, type: string }
 
   # ---------------------------------------------------------------- Certifications
   - name: certifications

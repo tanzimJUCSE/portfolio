@@ -139,6 +139,15 @@ const totalTalks = talks.reduce((total, group) => total + group.appearances.leng
                   </li>
                 ))}
               </ul>
+              {group.links.length > 0 && (
+                <p class="badge-row mt-1">
+                  {group.links.map((link) => (
+                    <a class="btn btn--ghost btn--sm" href={link.url} target="_blank" rel="noopener">
+                      <Icon name="external" size={14} /> {link.label}
+                    </a>
+                  ))}
+                </p>
+              )}
             </div>
           ))}
         </div>

@@ -41,6 +41,15 @@ const meta = page('awards', 'Awards & Recognition');
                     ))}
                   </ul>
                 )}
+                {award.links.length > 0 && (
+                  <p class="badge-row mt-1">
+                    {award.links.map((link) => (
+                      <a class="btn btn--ghost btn--sm" href={link.url} target="_blank" rel="noopener">
+                        <Icon name="external" size={14} /> {link.label}
+                      </a>
+                    ))}
+                  </p>
+                )}
               </article>
             ))}
           </div>

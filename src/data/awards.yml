@@ -5,6 +5,11 @@
     - Logic locking competition, served as Red Team.
     - Awarded a travel grant to participate in person.
     - With Sudipta Paria, Aritra Dasgupta and Pravin Gaikwad.
+  links:
+    - label: Competition results
+      url: https://sites.google.com/nyu.edu/csawllc2023/winners
+    - label: UMaine news coverage
+      url: https://mailchi.mp/maine.edu/mcec-newsletter-january-2024
 
 - title: "3rd place, HeLLO: CTF"
   org: Hardware obfuscation track

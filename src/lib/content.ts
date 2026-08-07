@@ -19,6 +19,12 @@ export interface SkillGroup {
   items: string[];
 }
 
+/** A labelled outbound link attached to a single entry, e.g. an award or a talk. */
+export interface EntryLink {
+  label: string;
+  url: string;
+}
+
 export interface PageIntro {
   title: string;
   intro?: string;
@@ -113,6 +119,7 @@ export interface TalkAppearance {
 export interface TalkGroup {
   title: string;
   appearances: TalkAppearance[];
+  links: EntryLink[];
 }
 
 export interface Award {
@@ -120,6 +127,7 @@ export interface Award {
   org: string;
   year: number | string;
   bullets: string[];
+  links: EntryLink[];
 }
 
 export interface Certification {
@@ -222,6 +230,17 @@ const strList = (value: unknown): string[] =>
 
 const record = (value: unknown): Record<string, unknown> =>
   value && typeof value === 'object' && !Array.isArray(value) ? (value as Record<string, unknown>) : {};
+
+/** Accepts either a bare URL string or a `{ label, url }` pair; drops entries with no URL. */
+const linkList = (value: unknown): EntryLink[] =>
+  list(value)
+    .map((entry) => {
+      if (typeof entry === 'string') return { label: '', url: entry.trim() };
+      const item = record(entry);
+      return { label: str(item.label), url: str(item.url) };
+    })
+    .filter((link) => link.url !== '')
+    .map((link) => ({ ...link, label: link.label || 'View' }));
 
 /** A single YAML file holding a top-level list. */
 function collection<T>(name: string, map: (row: Record<string, unknown>) => T): T[] {
@@ -378,6 +397,7 @@ export const talks: TalkGroup[] = collection<TalkGroup>('talks', (row) => ({
       date: str(item.date),
     };
   }),
+  links: linkList(row.links),
 }));
 
 export const awards: Award[] = collection<Award>('awards', (row) => ({
@@ -385,6 +405,7 @@ export const awards: Award[] = collection<Award>('awards', (row) => ({
   org: str(row.org),
   year: str(row.year),
   bullets: strList(row.bullets),
+  links: linkList(row.links),
 })).sort((a, b) => Number(b.year || 0) - Number(a.year || 0));
 
 export const certifications: Certification[] = collection<Certification>('certifications', (row) => ({
