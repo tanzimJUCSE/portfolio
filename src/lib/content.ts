@@ -316,10 +316,23 @@ export function page(key: string, fallbackTitle: string): PageIntro {
   return site.pages[key] ?? { title: fallbackTitle, intro: '' };
 }
 
-/** Splits a `text` field into paragraphs on blank lines. */
+/**
+ * Splits a `text` field into paragraphs.
+ *
+ * The same content reaches us in two shapes depending on how the YAML was
+ * written. A literal block (`|`, what a human types) keeps its hard wrapping and
+ * separates paragraphs with a blank line. A folded block (`>`, what Pages CMS
+ * writes when you save the form) has already collapsed each paragraph onto one
+ * line, so paragraphs arrive separated by a single newline and blank lines never
+ * survive. Splitting on blank lines alone would render a CMS-saved bio as one
+ * long block, so fall back to single newlines when there are no blank lines.
+ */
 export function paragraphs(value: string): string[] {
-  return value
-    .split(/\n\s*\n/)
+  const text = value.trim();
+  if (!text) return [];
+  const separator = /\n\s*\n/.test(text) ? /\n\s*\n/ : /\n/;
+  return text
+    .split(separator)
     .map((part) => part.replace(/\s*\n\s*/g, ' ').trim())
     .filter(Boolean);
 }
