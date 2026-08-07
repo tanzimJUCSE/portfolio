@@ -1,0 +1,67 @@
+---
+import Icon from './Icon.astro';
+import { splitAuthors, STATUS_LABELS, TYPE_LABELS, type Publication } from '../lib/content';
+
+interface Props {
+  pub: Publication;
+  showStatus?: boolean;
+}
+
+const { pub, showStatus = false } = Astro.props;
+
+const authors = splitAuthors(pub.authors);
+const linkable = pub.link !== '' && !pub.restricted;
+---
+
+<li class="pub" data-type={pub.type} data-status={pub.status} data-year={pub.year}>
+  <div class="pub__year">{pub.year}</div>
+  <div>
+    <h3 class="pub__title">
+      {
+        linkable ? (
+          <a href={pub.link} target="_blank" rel="noopener">
+            {pub.title}
+          </a>
+        ) : (
+          pub.title
+        )
+      }
+    </h3>
+
+    {
+      authors.length > 0 && (
+        <p class="pub__authors">
+          {authors.map((part) => (part.isMe ? <span class="me">{part.text}</span> : part.text))}
+        </p>
+      )
+    }
+
+    {pub.venue && <p class="pub__venue">{pub.venue}</p>}
+
+    <div class="pub__footer">
+      {showStatus && pub.status !== 'published' && (
+        <span class="badge badge--ok">{STATUS_LABELS[pub.status]}</span>
+      )}
+      <span class="badge">{TYPE_LABELS[pub.type]}</span>
+      {pub.impactFactor && <span class="badge badge--accent">Impact factor {pub.impactFactor}</span>}
+      {pub.coreRank && <span class="badge badge--accent">CORE {pub.coreRank}</span>}
+      {pub.restricted && <span class="badge badge--warn">Distribution restricted</span>}
+      {pub.note && <span class="pub__note">{pub.note}</span>}
+
+      {
+        linkable && (
+          <a class="btn btn--ghost btn--sm" href={pub.link} target="_blank" rel="noopener">
+            <Icon name="external" size={14} /> Read paper
+          </a>
+        )
+      }
+      {
+        pub.preprint && (
+          <a class="btn btn--ghost btn--sm" href={pub.preprint} target="_blank" rel="noopener">
+            <Icon name="file" size={14} /> Preprint
+          </a>
+        )
+      }
+    </div>
+  </div>
+</li>

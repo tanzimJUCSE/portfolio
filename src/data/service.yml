@@ -1,0 +1,34 @@
+- role: Reviewer
+  org: Journal of Electronic Testing
+  detail: Article on power side-channel analysis
+  date: October 2025
+
+- role: Reviewer
+  org: ACM Transactions on Design Automation of Electronic Systems
+  detail: Article on hardware obfuscation
+  date: June 2025
+
+- role: Reviewer
+  org: IEEE Transactions on Very Large Scale Integration Systems
+  detail: Article on hardware Trojans
+  date: January 2025
+
+- role: Reviewer
+  org: IEEE Access
+  detail: Article on hardware Trojans
+  date: February 2025
+
+- role: Judge, Undergraduate Research
+  org: University of Maine Student Symposium
+  detail: ""
+  date: April 2024
+
+- role: Graduate Student Member
+  org: Institute of Electrical and Electronics Engineers (IEEE)
+  detail: ""
+  date: Current
+
+- role: President, Bangladesh Students' Association
+  org: University of Maine
+  detail: Led cultural programming for the international student community.
+  date: 2023

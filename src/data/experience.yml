@@ -1,0 +1,26 @@
+- role: Graduate Research Assistant
+  org: University of Maine — SIEGE Lab
+  location: Orono, Maine, USA
+  period: September 2022 – Present
+  detail: >-
+    Hardware security, logic locking, and applied machine learning, advised by Dr. Prabuddha
+    Chakraborty.
+  bullets:
+    - Lead author on explainable-AI frameworks for design-for-security, hardware Trojan detection, and power side-channel mitigation.
+    - Two provisional patents filed with industry and academic partners.
+
+- role: Instructor, NSF ITEST Semiconductor Summer Camp
+  org: University of Maine
+  location: Portland, Maine, USA
+  period: July 2025
+  detail: Five-day camp introducing high school students to semiconductors and microelectronics.
+  bullets: []
+
+- role: Software Engineer
+  org: Robi Axiata Limited
+  location: Gulshan, Dhaka, Bangladesh
+  period: July 2021 – April 2022
+  detail: Telecommunications operator serving more than 50 million subscribers.
+  bullets:
+    - Built and maintained services using MVC architecture, Linux internals, and bash automation.
+    - Managed user access for a multinational organization and handled SLA-bound operational support.

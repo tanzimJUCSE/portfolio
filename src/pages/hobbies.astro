@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { page, hobbies, paragraphs } from '../lib/content';
+
+const meta = page('hobbies', 'Beyond Research');
+---
+
+<BaseLayout title={meta.title} description={meta.intro}>
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header__inner">
+        <span class="eyebrow">Life outside the lab</span>
+        <h1>{meta.title}</h1>
+        {meta.intro && <p>{meta.intro}</p>}
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      {
+        hobbies.length === 0 ? (
+          <div class="placeholder">
+            <Icon name="camera" size={22} />
+            <p>Nothing here yet. Add your first entry under "Beyond research" in the admin panel.</p>
+          </div>
+        ) : (
+          hobbies.map((hobby) => (
+            <article class="hobby">
+              <div>
+                <div class="hobby__head">
+                  {hobby.emoji && <span class="hobby__emoji">{hobby.emoji}</span>}
+                  <h2>{hobby.title}</h2>
+                </div>
+                <div class="hobby__body mt-1">
+                  {paragraphs(hobby.body).map((paragraph) => (
+                    <p>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+
+              {hobby.images.length > 0 && (
+                <ul class="gallery">
+                  {hobby.images.map((image) => (
+                    <li>
+                      <figure>
+                        <img src={image.src} alt={image.caption || hobby.title} loading="lazy" decoding="async" />
+                        {image.caption && <figcaption>{image.caption}</figcaption>}
+                      </figure>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>

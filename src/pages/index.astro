@@ -1,0 +1,325 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import {
+  site,
+  stats,
+  news,
+  featuredWork,
+  publishedWork,
+  education,
+  paragraphs,
+} from '../lib/content';
+
+const bio = paragraphs(site.bio);
+const latestNews = news.slice(0, 5);
+const featured = featuredWork.slice(0, 5);
+const scholar = site.links.find((link) => link.icon === 'scholar');
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__body">
+          {
+            site.availability && (
+              <p>
+                <span class="badge badge--ok">
+                  <span class="dot" /> {site.availability}
+                </span>
+              </p>
+            )
+          }
+
+          <h1>{site.name}</h1>
+
+          <p class="hero__role">
+            {site.role}
+            {site.affiliation && <> · <strong>{site.affiliation}</strong></>}
+          </p>
+
+          {site.tagline && <p class="lead">{site.tagline}</p>}
+
+          <div class="btn-row">
+            {
+              site.cv && (
+                <a class="btn btn--primary" href={site.cv} target="_blank" rel="noopener">
+                  <Icon name="download" size={16} /> Download CV
+                </a>
+              )
+            }
+            {
+              site.email && (
+                <a class="btn" href={`mailto:${site.email}`}>
+                  <Icon name="mail" size={16} /> Get in touch
+                </a>
+              )
+            }
+            {
+              scholar && (
+                <a class="btn btn--ghost" href={scholar.url} target="_blank" rel="noopener">
+                  <Icon name="scholar" size={16} /> Google Scholar
+                </a>
+              )
+            }
+          </div>
+
+          {
+            site.links.length > 0 && (
+              <div class="social-row">
+                {site.links.map((link) => (
+                  <a class="social-link" href={link.url} target="_blank" rel="noopener me">
+                    <Icon name={link.icon} size={15} />
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )
+          }
+
+          <div class="hero__meta">
+            {
+              site.location && (
+                <span>
+                  <Icon name="pin" size={15} /> {site.location}
+                </span>
+              )
+            }
+            {
+              site.lab && (
+                <span>
+                  <Icon name="building" size={15} /> {site.lab}
+                </span>
+              )
+            }
+            {
+              site.advisor && (
+                <span>
+                  <Icon name="users" size={15} /> Advised by {site.advisor}
+                </span>
+              )
+            }
+          </div>
+        </div>
+
+        <div
+          class:list={['hero__portrait', !site.photo && 'hero__portrait--fallback']}
+          data-initials={site.initials}
+        >
+          {
+            site.photo && (
+              <img
+                src={site.photo}
+                alt={`Portrait of ${site.name}`}
+                width="520"
+                height="520"
+                onerror="this.closest('.hero__portrait').classList.add('hero__portrait--fallback'); this.remove();"
+              />
+            )
+          }
+        </div>
+      </div>
+
+      {
+        stats.length > 0 && (
+          <div class="stats">
+            {stats.map((stat) => (
+              <div class="stat">
+                <div class="stat__value">{stat.value}</div>
+                <div class="stat__label">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container split">
+      <div>
+        <SectionHead eyebrow="About" title="Research at the intersection of hardware and AI" />
+        <div class="prose">
+          {bio.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </div>
+
+      <div class="stack">
+        {
+          site.interests.length > 0 && (
+            <div class="card card--flat">
+              <h3 class="mt-0">Research interests</h3>
+              <ul class="tag-list mt-1">
+                {site.interests.map((interest) => (
+                  <li class="tag">{interest}</li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+
+        {
+          site.skills.map((group) => (
+            <div class="card card--flat">
+              <h3 class="skill-group__label">
+                {group.icon && <Icon name={group.icon} size={17} />}
+                {group.label}
+              </h3>
+              <ul class="tag-list">
+                {group.items.map((item) => (
+                  <li class="tag">{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    latestNews.length > 0 && (
+      <section class="section section-tinted" id="news">
+        <div class="container">
+          <SectionHead eyebrow="News" title="Recent updates" />
+          <ul class="news">
+            {latestNews.map((item) => (
+              <li>
+                <div class="news__date">{item.date}</div>
+                <div class="news__text">
+                  {item.text}
+                  {item.link && (
+                    <>
+                      {' '}
+                      <a href={item.link} target="_blank" rel="noopener">
+                        Read more
+                      </a>
+                    </>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    featured.length > 0 && (
+      <section class="section" id="research">
+        <div class="container">
+          <SectionHead
+            eyebrow="Selected work"
+            title="Featured publications"
+            intro={`A selection from ${publishedWork.length} peer-reviewed papers.`}
+          >
+            <a class="btn btn--ghost" href="/publications/">
+              All publications <Icon name="arrow" size={15} />
+            </a>
+          </SectionHead>
+
+          <ul class="pub-list">
+            {featured.map((pub) => (
+              <PublicationItem pub={pub} showStatus />
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    education.length > 0 && (
+      <section class="section" id="education">
+        <div class="container split">
+          <div>
+            <SectionHead eyebrow="Education" title="Academic background" />
+            <ol class="timeline">
+              {education.map((entry) => (
+                <li>
+                  <div class="timeline__top">
+                    <h3 class="timeline__title">{entry.degree}</h3>
+                    <span class="timeline__date">{entry.period}</span>
+                  </div>
+                  <div class="timeline__org">
+                    {entry.institution}
+                    {entry.location && <span class="muted"> · {entry.location}</span>}
+                  </div>
+                  {entry.detail && <p class="timeline__detail">{entry.detail}</p>}
+                  {entry.bullets.length > 0 && (
+                    <ul class="bullets">
+                      {entry.bullets.map((bullet) => (
+                        <li>{bullet}</li>
+                      ))}
+                    </ul>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </div>
+
+          <div class="card">
+            <h3 class="mt-0">Explore further</h3>
+            <p class="muted mt-1">Everything from the CV, organised by theme.</p>
+            <div class="stack mt-2">
+              <a class="btn btn--ghost" href="/experience/">
+                <Icon name="file" size={15} /> Experience & service
+              </a>
+              <a class="btn btn--ghost" href="/awards/">
+                <Icon name="award" size={15} /> Awards & recognition
+              </a>
+              <a class="btn btn--ghost" href="/projects/">
+                <Icon name="code" size={15} /> Projects
+              </a>
+              <a class="btn btn--ghost" href="/hobbies/">
+                <Icon name="camera" size={15} /> Beyond research
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="cta">
+        <div>
+          <span class="eyebrow">Contact</span>
+          <h2 class="mt-1">Let's talk about hardware security</h2>
+        </div>
+        <p>
+          I am always glad to hear from researchers, students, and teams working on trustworthy
+          microelectronics, side-channel analysis, or AI for design automation.
+        </p>
+        <div class="btn-row">
+          {
+            site.email && (
+              <a class="btn btn--primary" href={`mailto:${site.email}`}>
+                <Icon name="mail" size={16} /> {site.email}
+              </a>
+            )
+          }
+          {
+            site.showPhone && site.phone && (
+              <a class="btn" href={`tel:${site.phone.replace(/\s+/g, '')}`}>
+                {site.phone}
+              </a>
+            )
+          }
+          {
+            site.cv && (
+              <a class="btn btn--ghost" href={site.cv} target="_blank" rel="noopener">
+                <Icon name="download" size={16} /> Curriculum vitae
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

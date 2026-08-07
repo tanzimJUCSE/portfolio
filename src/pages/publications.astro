@@ -1,0 +1,194 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import PublicationItem from '../components/PublicationItem.astro';
+import {
+  site,
+  page,
+  publishedWork,
+  underReview,
+  patents,
+  venues,
+  splitAuthors,
+  TYPE_LABELS,
+  type PublicationType,
+} from '../lib/content';
+
+const meta = page('publications', 'Publications');
+
+const availableTypes = (['journal', 'conference', 'workshop', 'other'] as PublicationType[]).filter((type) =>
+  publishedWork.some((pub) => pub.type === type)
+);
+
+const scholar = site.links.find((link) => link.icon === 'scholar');
+---
+
+<BaseLayout title={meta.title} description={meta.intro}>
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header__inner">
+        <span class="eyebrow">{publishedWork.length} published · {underReview.length} under review · {patents.length} patent filings</span>
+        <h1>{meta.title}</h1>
+        {meta.intro && <p>{meta.intro}</p>}
+        <div class="btn-row mt-1">
+          {
+            scholar && (
+              <a class="btn btn--ghost btn--sm" href={scholar.url} target="_blank" rel="noopener">
+                <Icon name="scholar" size={15} /> Google Scholar
+              </a>
+            )
+          }
+          {
+            site.cv && (
+              <a class="btn btn--ghost btn--sm" href={site.cv} target="_blank" rel="noopener">
+                <Icon name="download" size={15} /> Download CV
+              </a>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      {
+        availableTypes.length > 1 && (
+          <div class="filters" role="group" aria-label="Filter publications by type">
+            <span class="filters__label">Filter</span>
+            <button class="chip" type="button" data-filter="all" aria-pressed="true">
+              All ({publishedWork.length})
+            </button>
+            {availableTypes.map((type) => (
+              <button class="chip" type="button" data-filter={type} aria-pressed="false">
+                {TYPE_LABELS[type]} ({publishedWork.filter((pub) => pub.type === type).length})
+              </button>
+            ))}
+          </div>
+        )
+      }
+
+      <ul class="pub-list" id="publication-list">
+        {publishedWork.map((pub) => <PublicationItem pub={pub} showStatus />)}
+      </ul>
+      <p class="muted mt-2" id="no-results" hidden>No publications match that filter.</p>
+    </div>
+  </section>
+
+  {
+    underReview.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <SectionHead
+            eyebrow="In progress"
+            title="Under peer review"
+            intro="Manuscripts currently submitted and awaiting decision."
+          />
+          <ul class="pub-list">
+            {underReview.map((pub) => (
+              <PublicationItem pub={pub} />
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    patents.length > 0 && (
+      <section class="section section-tinted">
+        <div class="container">
+          <SectionHead
+            eyebrow="Intellectual property"
+            title="Patent applications"
+            intro="Provisional applications filed with academic and industry partners."
+          />
+          <div class="grid grid--2">
+            {patents.map((patent) => (
+              <article class="card">
+                <div class="badge-row">
+                  <span class="badge badge--accent">{patent.status}</span>
+                  {patent.year && <span class="badge">{patent.year}</span>}
+                </div>
+                <h3 class="mt-1">
+                  {patent.link ? (
+                    <a href={patent.link} target="_blank" rel="noopener">
+                      {patent.title}
+                    </a>
+                  ) : (
+                    patent.title
+                  )}
+                </h3>
+                {patent.inventors && (
+                  <p class="pub__authors mt-1">
+                    {splitAuthors(patent.inventors).map((part) =>
+                      part.isMe ? <span class="me">{part.text}</span> : part.text
+                    )}
+                  </p>
+                )}
+                <p class="muted">
+                  {patent.number && <>Application no. {patent.number}</>}
+                  {patent.number && patent.note && <> · </>}
+                  {patent.note}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    venues.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <SectionHead
+            eyebrow="Where this work appears"
+            title="Publication venues"
+            intro="Journals and conferences where I have published, with their standing in the field."
+          />
+          <ol class="numbered">
+            {venues.map((venue) => (
+              <li>
+                <strong>{venue.name}</strong>
+                {venue.note && <p class="muted">{venue.note}</p>}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  <script is:inline>
+    (function () {
+    var chips = Array.prototype.slice.call(document.querySelectorAll('[data-filter]'));
+    var list = document.getElementById('publication-list');
+    var empty = document.getElementById('no-results');
+    if (!chips.length || !list) return;
+
+    var items = Array.prototype.slice.call(list.querySelectorAll('.pub'));
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        var value = chip.getAttribute('data-filter');
+        var shown = 0;
+
+        chips.forEach(function (other) {
+          other.setAttribute('aria-pressed', other === chip ? 'true' : 'false');
+        });
+
+        items.forEach(function (item) {
+          var match = value === 'all' || item.getAttribute('data-type') === value;
+          item.hidden = !match;
+          if (match) shown++;
+        });
+
+        if (empty) empty.hidden = shown !== 0;
+      });
+    });
+    })();
+  </script>
+</BaseLayout>

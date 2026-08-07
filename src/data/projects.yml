@@ -1,0 +1,66 @@
+- title: Simulation of a Custom Path Planning Algorithm for the xArm
+  category: Mobile Robotics
+  description: >-
+    Designed and simulated a custom path planning routine for a robotic manipulator in ROS,
+    evaluating trajectory quality against baseline planners.
+  bullets: []
+  tags:
+    - ROS
+    - Python
+    - Motion planning
+  link: ""
+
+- title: "EchoMind: A Voice Assistant for ESL Users and Speech Disorders"
+  category: Human-Computer Interaction
+  description: >-
+    A voice assistant designed for English-as-a-second-language speakers and users with speech
+    disorders, focused on tolerant recognition and forgiving interaction design.
+  bullets: []
+  tags:
+    - Speech recognition
+    - Accessibility
+    - HCI
+  link: https://sites.google.com/maine.edu/sie-515hci/project-summary
+
+- title: IoT Home Automation
+  category: Internet of Things
+  description: A small-scale home automation deployment controlling appliances remotely.
+  bullets:
+    - Appliance control over a GSM module.
+  tags:
+    - IoT
+    - GSM
+    - Embedded systems
+  link: ""
+
+- title: IoT Smart City Design
+  category: Internet of Things
+  description: A small-scale smart city scenario integrating several connected subsystems.
+  bullets:
+    - Smart classroom, smart transportation, and smart kitchen subsystems.
+  tags:
+    - IoT
+    - Systems design
+  link: ""
+
+- title: Bluetooth-Controlled RC Car
+  category: Embedded Systems
+  description: A remote-controlled car driven over a Bluetooth link.
+  bullets:
+    - Built with an Arduino UNO and an L298N motor driver.
+  tags:
+    - Arduino
+    - Bluetooth
+    - C
+  link: ""
+
+- title: Offline Voice Controlled Desktop Manager
+  category: Python
+  description: >-
+    A desktop assistant that runs entirely offline, managing files and applications through voice
+    commands.
+  bullets: []
+  tags:
+    - Python
+    - Speech recognition
+  link: https://github.com/tanzimJUCSE/projects/tree/master/Python

@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout title="Page not found" description="That page does not exist.">
+  <section class="section">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Error 404</span>
+      <h1 class="mt-1">This page does not exist</h1>
+      <p class="lead mt-2">The link may be outdated, or the page may have moved.</p>
+      <div class="btn-row mt-3" style="justify-content: center">
+        <a class="btn btn--primary" href="/">
+          <Icon name="arrow" size={16} /> Back to the homepage
+        </a>
+        <a class="btn btn--ghost" href="/publications/">Publications</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

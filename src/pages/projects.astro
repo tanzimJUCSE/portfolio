@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { page, projects, site } from '../lib/content';
+
+const meta = page('projects', 'Projects');
+const github = site.links.find((link) => link.icon === 'github');
+---
+
+<BaseLayout title={meta.title} description={meta.intro}>
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header__inner">
+        <span class="eyebrow">{projects.length} projects</span>
+        <h1>{meta.title}</h1>
+        {meta.intro && <p>{meta.intro}</p>}
+        {
+          github && (
+            <div class="btn-row mt-1">
+              <a class="btn btn--ghost btn--sm" href={github.url} target="_blank" rel="noopener">
+                <Icon name="github" size={15} /> More on GitHub
+              </a>
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid--2">
+        {
+          projects.map((project) => (
+            <article class="card card--link">
+              {project.category && <span class="eyebrow">{project.category}</span>}
+              <h3 class="mt-1">{project.title}</h3>
+              {project.description && <p class="muted mt-1">{project.description}</p>}
+              {project.bullets.length > 0 && (
+                <ul class="bullets">
+                  {project.bullets.map((bullet) => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+              )}
+              {project.tags.length > 0 && (
+                <ul class="tag-list mt-2">
+                  {project.tags.map((tag) => (
+                    <li class="tag">{tag}</li>
+                  ))}
+                </ul>
+              )}
+              {project.link && (
+                <p class="mt-2">
+                  <a class="btn btn--ghost btn--sm" href={project.link} target="_blank" rel="noopener">
+                    <Icon name="external" size={14} /> View project
+                  </a>
+                </p>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

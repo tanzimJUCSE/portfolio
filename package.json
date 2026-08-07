@@ -1,0 +1,23 @@
+{
+  "name": "tanzim-mahfuz-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal academic website of Tanzim Mahfuz",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "postbuild": "node scripts/postbuild.mjs",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.2.5",
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "^4.0.9"
+  }
+}

@@ -1,0 +1,458 @@
+# Configuration for Pages CMS (https://pagescms.org) - the admin panel for this site.
+# Sign in at https://app.pagescms.org with GitHub and every section below becomes a form.
+
+media:
+  input: public/media
+  output: /media
+  rename: safe
+
+content:
+  # ---------------------------------------------------------------- Site settings
+  - name: site
+    label: Site settings
+    type: file
+    path: src/data/site.yml
+    format: yaml
+    fields:
+      - name: name
+        label: Full name
+        type: string
+        required: true
+      - name: initials
+        label: Initials
+        type: string
+        description: Shown in the logo and as a placeholder if your photo is missing.
+      - name: role
+        label: Current role
+        type: string
+        description: For example "Ph.D. Candidate in Electrical & Computer Engineering".
+      - name: affiliation
+        label: Institution
+        type: string
+      - name: department
+        label: Department
+        type: string
+      - name: lab
+        label: Research group
+        type: string
+      - name: advisor
+        label: Advisor
+        type: string
+      - name: location
+        label: Location
+        type: string
+      - name: url
+        label: Website address
+        type: string
+        description: The full address of this site, e.g. https://tanzim-mahfuz.me - change only if you move domains.
+      - name: email
+        label: Email
+        type: string
+      - name: phone
+        label: Phone
+        type: string
+        description: Only shown if the switch below is on.
+      - name: showPhone
+        label: Show phone number publicly
+        type: boolean
+      - name: photo
+        label: Profile photo
+        type: image
+        description: Upload a square photo. If this is empty your initials are shown instead.
+      - name: cv
+        label: CV (PDF)
+        type: file
+        description: Upload your latest CV here and the download buttons update everywhere.
+      - name: tagline
+        label: One-line summary
+        type: text
+        description: The single sentence under your name on the homepage.
+      - name: availability
+        label: Availability badge
+        type: string
+        description: The small green badge at the top of the homepage. Leave empty to hide it.
+      - name: bio
+        label: About me
+        type: text
+        description: Leave a blank line between paragraphs.
+      - name: interests
+        label: Research interests
+        type: string
+        list: true
+      - name: skills
+        label: Skill groups
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Group name
+            type: string
+          - name: icon
+            label: Icon
+            type: select
+            options:
+              values:
+                - { name: cpu, label: Chip }
+                - { name: sparkles, label: AI / sparkles }
+                - { name: code, label: Code }
+                - { name: book, label: Book }
+                - { name: globe, label: Globe }
+          - name: items
+            label: Skills
+            type: string
+            list: true
+      - name: links
+        label: Profile links
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{label}"
+        fields:
+          - name: label
+            label: Label
+            type: string
+          - name: url
+            label: Address
+            type: string
+            description: Leave empty to hide this link everywhere on the site.
+          - name: icon
+            label: Icon
+            type: select
+            options:
+              values:
+                - { name: scholar, label: Google Scholar }
+                - { name: orcid, label: ORCID }
+                - { name: linkedin, label: LinkedIn }
+                - { name: github, label: GitHub }
+                - { name: researchgate, label: ResearchGate }
+                - { name: globe, label: Web of Science / other }
+                - { name: link, label: Generic link }
+      - name: seoDescription
+        label: Search engine description
+        type: text
+        description: One or two sentences shown in Google results.
+      - name: keywords
+        label: Search keywords
+        type: string
+        list: true
+      - name: ogImage
+        label: Social sharing image
+        type: image
+        description: Optional. Used when someone shares your site on LinkedIn. Defaults to your photo.
+      - name: footerNote
+        label: Footer note
+        type: string
+      - name: pages
+        label: Page titles & intros
+        type: object
+        fields:
+          - name: publications
+            label: Publications page
+            type: object
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: intro, label: Intro, type: text }
+          - name: experience
+            label: Experience page
+            type: object
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: intro, label: Intro, type: text }
+          - name: awards
+            label: Awards page
+            type: object
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: intro, label: Intro, type: text }
+          - name: projects
+            label: Projects page
+            type: object
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: intro, label: Intro, type: text }
+          - name: hobbies
+            label: Beyond research page
+            type: object
+            fields:
+              - { name: title, label: Title, type: string }
+              - { name: intro, label: Intro, type: text }
+
+  # ---------------------------------------------------------------- News
+  - name: news
+    label: News & updates
+    type: file
+    path: src/data/news.yml
+    format: yaml
+    list: true
+    fields:
+      - name: date
+        label: When
+        type: string
+        description: Written however you like, for example "March 2026".
+      - name: text
+        label: Update
+        type: text
+      - name: link
+        label: Link
+        type: string
+        description: Optional.
+
+  # ---------------------------------------------------------------- Publications
+  - name: publications
+    label: Publications
+    type: collection
+    path: src/data/publications
+    format: yaml
+    filename: "{primary}.yml"
+    view:
+      fields: [title, year, venue, status]
+      primary: title
+      sort: [year, title, venue]
+      default:
+        sort: year
+        order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: authors
+        label: Authors
+        type: text
+        description: Comma separated, in publication order. Your own name is bolded automatically.
+      - name: venue
+        label: Journal or conference
+        type: string
+      - name: year
+        label: Year
+        type: number
+      - name: type
+        label: Type
+        type: select
+        options:
+          values:
+            - { name: journal, label: Journal article }
+            - { name: conference, label: Conference paper }
+            - { name: workshop, label: Workshop paper }
+            - { name: other, label: Other }
+      - name: status
+        label: Status
+        type: select
+        options:
+          values:
+            - { name: published, label: Published }
+            - { name: accepted, label: Accepted }
+            - { name: under-review, label: Under review }
+      - name: link
+        label: Publisher link
+        type: string
+      - name: preprint
+        label: Preprint link
+        type: string
+        description: Optional arXiv or archive link.
+      - name: impactFactor
+        label: Impact factor
+        type: string
+        description: Just the number, e.g. 8.7. Leave empty to hide the badge.
+      - name: coreRank
+        label: CORE rank
+        type: string
+        description: For example A or A*. Leave empty to hide the badge.
+      - name: note
+        label: Extra note
+        type: string
+      - name: restricted
+        label: Distribution restricted
+        type: boolean
+        description: Turn on for papers you cannot link publicly. Hides the link and adds a notice.
+      - name: featured
+        label: Feature on homepage
+        type: boolean
+
+  # ---------------------------------------------------------------- Patents
+  - name: patents
+    label: Patents
+    type: file
+    path: src/data/patents.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: inventors, label: Inventors, type: text }
+      - { name: status, label: Status, type: string }
+      - { name: number, label: Application number, type: string }
+      - { name: year, label: Year, type: number }
+      - { name: note, label: Note, type: string }
+      - { name: link, label: Link, type: string }
+
+  # ---------------------------------------------------------------- Talks
+  - name: talks
+    label: Talks & presentations
+    type: file
+    path: src/data/talks.yml
+    format: yaml
+    list: true
+    fields:
+      - name: title
+        label: Paper or topic
+        type: string
+        required: true
+      - name: appearances
+        label: Where it was presented
+        type: object
+        list:
+          collapsible:
+            collapsed: true
+            summary: "{venue}"
+        fields:
+          - name: format
+            label: Format
+            type: select
+            options:
+              values:
+                - { name: Oral, label: Oral }
+                - { name: Poster, label: Poster }
+                - { name: Panel, label: Panel }
+                - { name: Invited, label: Invited talk }
+          - { name: venue, label: Venue, type: string }
+          - { name: location, label: Location, type: string }
+          - { name: date, label: Date, type: string }
+
+  # ---------------------------------------------------------------- Awards
+  - name: awards
+    label: Awards & grants
+    type: file
+    path: src/data/awards.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: title, label: Award, type: string, required: true }
+      - { name: org, label: Awarded by, type: string }
+      - { name: year, label: Year, type: number }
+      - name: bullets
+        label: Details
+        type: string
+        list: true
+
+  # ---------------------------------------------------------------- Certifications
+  - name: certifications
+    label: Certifications
+    type: file
+    path: src/data/certifications.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: title, label: Certification, type: string, required: true }
+      - { name: issuer, label: Issued by, type: string }
+      - { name: link, label: Credential link, type: string }
+
+  # ---------------------------------------------------------------- Experience
+  - name: experience
+    label: Experience
+    type: file
+    path: src/data/experience.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: role, label: Role, type: string, required: true }
+      - { name: org, label: Organization, type: string }
+      - { name: location, label: Location, type: string }
+      - { name: period, label: Dates, type: string }
+      - { name: detail, label: Summary, type: text }
+      - name: bullets
+        label: Highlights
+        type: string
+        list: true
+
+  # ---------------------------------------------------------------- Education
+  - name: education
+    label: Education
+    type: file
+    path: src/data/education.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: degree, label: Degree, type: string, required: true }
+      - { name: institution, label: Institution, type: string }
+      - { name: location, label: Location, type: string }
+      - { name: period, label: Dates, type: string }
+      - { name: detail, label: Role or note, type: string }
+      - name: bullets
+        label: Details
+        type: string
+        list: true
+
+  # ---------------------------------------------------------------- Service
+  - name: service
+    label: Service & community
+    type: file
+    path: src/data/service.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: role, label: Role, type: string, required: true }
+      - { name: org, label: Organization, type: string }
+      - { name: detail, label: Detail, type: string }
+      - { name: date, label: Date, type: string }
+
+  # ---------------------------------------------------------------- Projects
+  - name: projects
+    label: Projects
+    type: file
+    path: src/data/projects.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - { name: category, label: Category, type: string }
+      - { name: description, label: Description, type: text }
+      - name: bullets
+        label: Highlights
+        type: string
+        list: true
+      - name: tags
+        label: Technologies
+        type: string
+        list: true
+      - { name: link, label: Link, type: string }
+
+  # ---------------------------------------------------------------- Venues
+  - name: venues
+    label: Publication venues
+    type: file
+    path: src/data/venues.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: name, label: Venue, type: string, required: true }
+      - { name: note, label: Standing in the field, type: text }
+
+  # ---------------------------------------------------------------- Hobbies
+  - name: hobbies
+    label: Beyond research
+    type: file
+    path: src/data/hobbies.yml
+    format: yaml
+    list: true
+    fields:
+      - { name: title, label: Title, type: string, required: true }
+      - name: emoji
+        label: Emoji
+        type: string
+        description: Optional single emoji shown next to the title.
+      - name: body
+        label: Text
+        type: text
+        description: Leave a blank line between paragraphs.
+      - name: images
+        label: Photos
+        type: image
+        description: Select as many photos as you like at once.
+        options:
+          multiple:
+            max: 24
+          categories: [image]

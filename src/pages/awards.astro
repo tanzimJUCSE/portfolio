@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { page, awards, certifications } from '../lib/content';
+
+const meta = page('awards', 'Awards & Recognition');
+---
+
+<BaseLayout title={meta.title} description={meta.intro}>
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header__inner">
+        <span class="eyebrow">{awards.length} awards & grants · {certifications.length} certifications</span>
+        <h1>{meta.title}</h1>
+        {meta.intro && <p>{meta.intro}</p>}
+      </div>
+    </div>
+  </header>
+
+  {
+    awards.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <SectionHead eyebrow="Recognition" title="Awards, fellowships & grants" />
+          <div class="grid grid--2">
+            {awards.map((award) => (
+              <article class="card">
+                <div class="badge-row">
+                  <span class="badge badge--accent">
+                    <Icon name="award" size={13} />
+                    {award.year}
+                  </span>
+                </div>
+                <h3 class="mt-1">{award.title}</h3>
+                {award.org && <p class="timeline__org">{award.org}</p>}
+                {award.bullets.length > 0 && (
+                  <ul class="bullets">
+                    {award.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    certifications.length > 0 && (
+      <section class="section section-tinted">
+        <div class="container">
+          <SectionHead
+            eyebrow="Training"
+            title="Professional certifications"
+            intro="Completed coursework and capstone certifications."
+          />
+          <div class="grid grid--3">
+            {certifications.map((certification) => (
+              <article class="card card--flat">
+                <h3 style="font-size: var(--step-0)">{certification.title}</h3>
+                {certification.issuer && <p class="muted">{certification.issuer}</p>}
+                {certification.link && (
+                  <p class="mt-1">
+                    <a class="btn btn--ghost btn--sm" href={certification.link} target="_blank" rel="noopener">
+                      <Icon name="external" size={14} /> View credential
+                    </a>
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

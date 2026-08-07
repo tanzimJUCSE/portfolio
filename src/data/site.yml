@@ -1,0 +1,145 @@
+name: Tanzim Mahfuz
+initials: TM
+role: Ph.D. Candidate in Electrical & Computer Engineering
+affiliation: University of Maine
+department: Department of Electrical & Computer Engineering
+lab: SIEGE Lab — Secure and Intelligent Edge Research
+advisor: Dr. Prabuddha Chakraborty
+location: Orono, Maine, USA
+
+# The address your site lives at. Change this only if you move to a new domain.
+url: https://tanzim-mahfuz.me
+
+email: tanzim.mahfuz@maine.edu
+phone: ""
+showPhone: false
+
+# Upload a new photo or CV in the Media section, then paste its path here.
+photo: /media/profile.jpg
+cv: /media/Tanzim_Mahfuz_CV.pdf
+
+tagline: Explainable and agentic AI for securing the microelectronics supply chain.
+availability: Open to internships, full-time roles, and research collaborations
+
+bio: |
+  I am a Ph.D. candidate in Electrical and Computer Engineering at the University of Maine, where I
+  research at the SIEGE Lab under Dr. Prabuddha Chakraborty. My work centers on one question: can
+  artificial intelligence explain, and then improve, the security of the hardware everything else
+  runs on?
+
+  I build explainable and agentic AI systems that find, quantify, and repair vulnerabilities in
+  digital designs — from design-for-security solution space exploration (X-DFS) and hardware Trojan
+  detection (SALTY) to power side-channel leakage mitigation (POLARIS) and LLM-orchestrated
+  frameworks for secure hardware design optimization.
+
+  This research has appeared in IEEE Transactions on Information Forensics and Security, CVPR, the
+  Design Automation Conference, and IEEE Communications Surveys & Tutorials, and has led to two
+  provisional patents filed jointly with the University of Florida and IN2FAB Technology. Before
+  graduate school I worked as a software engineer at Robi Axiata Limited in Dhaka, Bangladesh.
+
+interests:
+  - Hardware supply chain security
+  - Logic locking & obfuscation
+  - Hardware Trojan detection
+  - Power & timing side channels
+  - Explainable AI (XAI)
+  - Agentic AI & large language models
+  - Electronic design automation
+  - Trustworthy microelectronics
+
+skills:
+  - label: Security & Trust
+    icon: cpu
+    items:
+      - Hardware supply chain security
+      - Logic locking & obfuscation
+      - Side-channel analysis
+      - Hardware Trojan detection
+      - Design-for-security
+  - label: Machine Learning
+    icon: sparkles
+    items:
+      - PyTorch
+      - Generative AI
+      - Agentic AI
+      - Large language models
+      - LangChain
+      - LangGraph
+      - Graph neural networks
+      - Explainable AI
+  - label: Software & Systems
+    icon: code
+    items:
+      - Python
+      - C / C++
+      - Java
+      - MATLAB
+      - Synopsys
+      - Docker
+      - Django
+      - Debian
+      - Red Hat
+
+# Any link with an empty url is hidden automatically, so you can fill these in over time.
+links:
+  - label: Google Scholar
+    url: https://scholar.google.com/citations?user=sLUruZIAAAAJ&hl=en
+    icon: scholar
+  - label: ORCID
+    url: https://orcid.org/0009-0003-4525-766X
+    icon: orcid
+  - label: LinkedIn
+    url: https://www.linkedin.com/in/tanzim-mahfuz
+    icon: linkedin
+  - label: GitHub
+    url: https://github.com/tanzimJUCSE
+    icon: github
+  - label: ResearchGate
+    url: https://www.researchgate.net/profile/Tanzim-Mahfuz
+    icon: researchgate
+  - label: Web of Science
+    url: https://tinyurl.com/webscience96
+    icon: globe
+
+seoDescription: >-
+  Tanzim Mahfuz is a Ph.D. candidate in Electrical and Computer Engineering at the University of
+  Maine researching explainable and agentic AI for hardware security, side-channel mitigation, and
+  trustworthy microelectronics.
+
+keywords:
+  - Tanzim Mahfuz
+  - hardware security
+  - explainable AI
+  - hardware Trojan detection
+  - logic locking
+  - side-channel analysis
+  - University of Maine
+  - SIEGE Lab
+
+ogImage: ""
+footerNote: Updated through a form, not a code editor.
+
+pages:
+  publications:
+    title: Publications
+    intro: >-
+      Peer-reviewed journal articles, conference papers, patent filings, and manuscripts currently
+      under review.
+  experience:
+    title: Experience & Service
+    intro: >-
+      Research and industry roles, teaching, peer review for IEEE and ACM venues, and invited talks
+      and posters.
+  awards:
+    title: Awards & Recognition
+    intro: >-
+      Competition wins, fellowships, travel grants, and professional certifications.
+  projects:
+    title: Projects
+    intro: >-
+      Course and personal projects spanning robotics, human-computer interaction, IoT, and embedded
+      systems.
+  hobbies:
+    title: Beyond Research
+    intro: >-
+      Traveling, photography, and the cultural work that keeps me curious outside the lab.

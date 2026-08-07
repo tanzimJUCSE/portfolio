@@ -1,0 +1,50 @@
+- title: "POLARIS: Explainable Artificial Intelligence for Mitigating Power Side-Channel Leakage"
+  appearances:
+    - format: Oral
+      venue: 62nd Design Automation Conference
+      location: San Francisco, California
+      date: June 2025
+    - format: Poster
+      venue: Warren B. Nelms Annual IoT Conference, University of Florida
+      location: Gainesville, Florida
+      date: December 2025
+    - format: Poster
+      venue: DAC Young Fellowship Program
+      location: ""
+      date: December 2025
+
+- title: >-
+    SALTY: Explainable Artificial Intelligence Guided Structural Analysis for Hardware Trojan
+    Detection
+  appearances:
+    - format: Oral
+      venue: NSF Hardware Assurance Workshop at DAC
+      location: San Francisco, California
+      date: June 2025
+    - format: Oral
+      venue: 43rd IEEE VLSI Test Symposium
+      location: Arizona State University
+      date: April 2025
+    - format: Panel
+      venue: "WHiSPerS: Wearable Health Monitoring Systems for Privacy & Security"
+      location: University of New Hampshire
+      date: March 2025
+    - format: Poster
+      venue: UMaine Student Symposium
+      location: Orono, Maine
+      date: April 2025
+
+- title: Securing Microelectronic Designs from Reverse Engineering using Artificial Intelligence
+  appearances:
+    - format: Poster
+      venue: New England Hardware Security Day
+      location: Massachusetts Institute of Technology
+      date: April 2025
+    - format: Poster
+      venue: The Roux Institute at Northeastern University
+      location: Portland, Maine
+      date: January 2023
+    - format: Poster
+      venue: Cyber Awareness and Research Symposium
+      location: University of North Dakota
+      date: October 2022

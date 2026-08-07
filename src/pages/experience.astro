@@ -1,0 +1,148 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SectionHead from '../components/SectionHead.astro';
+import { page, experience, education, services, talks } from '../lib/content';
+
+const meta = page('experience', 'Experience & Service');
+const totalTalks = talks.reduce((total, group) => total + group.appearances.length, 0);
+---
+
+<BaseLayout title={meta.title} description={meta.intro}>
+  <header class="page-header">
+    <div class="container">
+      <div class="page-header__inner">
+        <span class="eyebrow">Research · Industry · Peer review · Talks</span>
+        <h1>{meta.title}</h1>
+        {meta.intro && <p>{meta.intro}</p>}
+      </div>
+    </div>
+  </header>
+
+  {
+    experience.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <SectionHead eyebrow="Positions" title="Research & professional experience" />
+          <ol class="timeline">
+            {experience.map((entry) => (
+              <li>
+                <div class="timeline__top">
+                  <h3 class="timeline__title">{entry.role}</h3>
+                  <span class="timeline__date">{entry.period}</span>
+                </div>
+                <div class="timeline__org">
+                  {entry.org}
+                  {entry.location && <span class="muted"> · {entry.location}</span>}
+                </div>
+                {entry.detail && <p class="timeline__detail">{entry.detail}</p>}
+                {entry.bullets.length > 0 && (
+                  <ul class="bullets">
+                    {entry.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    education.length > 0 && (
+      <section class="section section-tinted">
+        <div class="container">
+          <SectionHead eyebrow="Education" title="Degrees" />
+          <ol class="timeline">
+            {education.map((entry) => (
+              <li>
+                <div class="timeline__top">
+                  <h3 class="timeline__title">{entry.degree}</h3>
+                  <span class="timeline__date">{entry.period}</span>
+                </div>
+                <div class="timeline__org">
+                  {entry.institution}
+                  {entry.location && <span class="muted"> · {entry.location}</span>}
+                </div>
+                {entry.detail && <p class="timeline__detail">{entry.detail}</p>}
+                {entry.bullets.length > 0 && (
+                  <ul class="bullets">
+                    {entry.bullets.map((bullet) => (
+                      <li>{bullet}</li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    services.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <SectionHead
+            eyebrow="Service"
+            title="Peer review & community"
+            intro="Reviewing for IEEE and ACM venues, judging student research, and serving the university community."
+          />
+          <div class="grid grid--2">
+            {services.map((entry) => (
+              <article class="card card--flat">
+                <div class="timeline__top">
+                  <h3 class="timeline__title">{entry.role}</h3>
+                  {entry.date && <span class="timeline__date">{entry.date}</span>}
+                </div>
+                <div class="timeline__org">{entry.org}</div>
+                {entry.detail && <p class="timeline__detail">{entry.detail}</p>}
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {
+    talks.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <SectionHead
+            eyebrow="Dissemination"
+            title="Presentations & talks"
+            intro={`${totalTalks} oral presentations, posters, and panels across ${talks.length} lines of work.`}
+          />
+
+          {talks.map((group) => (
+            <div class="talk-group">
+              <h3 class="talk-group__title">{group.title}</h3>
+              <ul class="talk-list">
+                {group.appearances.map((appearance) => (
+                  <li>
+                    {appearance.format && (
+                      <span class="badge badge--accent">
+                        <Icon name={appearance.format.toLowerCase() === 'oral' ? 'mic' : 'book'} size={13} />
+                        {appearance.format}
+                      </span>
+                    )}
+                    <span class="talk-list__where">
+                      {appearance.venue}
+                      {appearance.location && <span class="muted"> · {appearance.location}</span>}
+                    </span>
+                    {appearance.date && <span class="talk-list__when">{appearance.date}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>
