@@ -12,8 +12,9 @@ and you edit them through a **visual admin panel with forms** — no coding, no 
 ## Part 1 — One-time setup
 
 Your repository is `github.com/tanzimJUCSE/portfolio` and your domain is `tanzim-mahfuz.me`.
-Everything in this project is already configured for both. Four steps remain, about 20 minutes
-total, and you will not write any code.
+Everything is configured for both, the code is pushed, and the first deploy has already succeeded.
+
+**Only Step 4 is still outstanding.** Steps 1–3 are done and recorded here for reference.
 
 ### Step 1 — Photo and CV ✅ done
 
@@ -27,39 +28,47 @@ Both files are already in place and already wired up:
 To swap either one later, upload the new file in the admin panel's **Media** section and select it
 under **Site settings → Profile photo / CV**.
 
-### Step 2 — Upload the project to GitHub
+### Step 2 — Push the project to GitHub ✅ done
 
-Open [github.com/tanzimJUCSE/portfolio](https://github.com/tanzimJUCSE/portfolio). Because the
-repository is still empty, the page offers **uploading an existing file** — click that.
+This folder is a git repository whose `origin` is
+[github.com/tanzimJUCSE/portfolio](https://github.com/tanzimJUCSE/portfolio), on the `main` branch.
+All 56 project files were pushed, including `.github/workflows/deploy.yml` and `.pages.yml`.
+`node_modules` and `dist` are excluded by `.gitignore`.
 
-Now drag in *everything* from this project folder, including the `.github` folder and the
-`.pages.yml` file. Then click **Commit changes**.
+You should not need git again — the admin panel commits for you. But if you ever edit a file on this
+computer, publish it with:
 
-Two things to know:
+```bash
+git add -A
+git commit -m "describe what changed"
+git push
+```
 
-- **Do not upload `node_modules` or `dist`** if they exist on your machine. GitHub builds the site
-  itself, and the included `.gitignore` covers them.
-- **Check that `.github/workflows/deploy.yml` and `.pages.yml` actually arrived.** Some browsers
-  quietly drop files whose names start with a dot. If either is missing from the file list after
-  committing, use **Add file → Create new file**, type the full path as the filename (for example
-  `.github/workflows/deploy.yml`), and paste the contents from this folder.
+### Step 3 — Turn on GitHub Pages ✅ done
 
-### Step 3 — Turn on GitHub Pages
+Pages is building from **GitHub Actions**, and the first run of "Build and deploy website" finished
+green. Every future push triggers another one; watch them in the repository's **Actions** tab.
 
-In your repository: **Settings → Pages → Build and deployment → Source**, choose
-**GitHub Actions**. That is the only setting to change.
-
-Now open the **Actions** tab. A run called "Build and deploy website" will be working. When it turns
-green — 60 to 90 seconds — the site is built and published. It will not look right at
-`tanzimjucse.github.io/portfolio` yet, because the site is built for your own domain; finish Step 4
-and use `tanzim-mahfuz.me` instead.
+The published site is not usable at `tanzimjucse.github.io/portfolio` — it is built for the root of
+your own domain, so its links and images point at `/`, not `/portfolio/`. That is expected and
+resolves itself the moment Step 4 is finished.
 
 ### Step 4 — Point tanzim-mahfuz.me at the site
 
 The address `https://tanzim-mahfuz.me` is already saved in **Site settings → Website address**, and
-the build writes the matching `CNAME` file automatically. Two places left to configure.
+the build writes the matching `CNAME` file automatically.
 
-**In Namecheap** — **Domain List → Manage → Advanced DNS**, add these five records:
+**In your repository — this is the one step still outstanding.** Go to **Settings → Pages → Custom
+domain**, type `tanzim-mahfuz.me`, and click **Save**. Until you do this, GitHub does not know which
+repository to serve for the domain and returns a 404, even though DNS is correct. A `CNAME` file in
+the build output is *not* enough on its own when deploying through GitHub Actions — the domain has to
+be registered once in these settings.
+
+Once saved, GitHub issues a TLS certificate (usually a few minutes). When the **Enforce HTTPS**
+checkbox becomes available, tick it.
+
+**In Namecheap — already done.** For reference, these are the records the domain needs, under
+**Domain List → Manage → Advanced DNS**:
 
 | Type | Host | Value |
 | --- | --- | --- |
@@ -67,17 +76,15 @@ the build writes the matching `CNAME` file automatically. Two places left to con
 | A Record | `@` | `185.199.109.153` |
 | A Record | `@` | `185.199.110.153` |
 | A Record | `@` | `185.199.111.153` |
-| CNAME Record | `www` | `tanzimjucse.github.io.` |
+| CNAME Record | `www` | `tanzim-mahfuz.me.` |
 
-Keep the trailing dot on the CNAME value. Delete any "Parking page" or "URL Redirect" records
-Namecheap added by default, or they will shadow the site.
+Your `www` record points at the apex domain, which works because the apex has the four A records
+above. GitHub's docs suggest `tanzimjucse.github.io.` instead; either is fine, so there is no need to
+change it.
 
-Optionally add four `AAAA` records on host `@` as well, so the site loads on IPv6-only networks:
+Delete any "Parking page" or "URL Redirect" records Namecheap adds by default, or they will shadow
+the site. Optionally add four `AAAA` records on host `@` so the site loads on IPv6-only networks:
 `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153`.
-
-**In your repository** — **Settings → Pages → Custom domain**, type `tanzim-mahfuz.me` and click
-**Save**. GitHub then checks DNS, which takes a few minutes to a few hours. Once the check passes,
-tick **Enforce HTTPS**. Your site is live.
 
 **Renewal:** `.me` costs roughly $15–20/year after the first year. If you would rather not pay that,
 [Cloudflare Registrar](https://www.cloudflare.com/products/registrar/) sells `.com` at wholesale
@@ -162,20 +169,22 @@ npm run dev
 
 ---
 
-## Part 4 — Left for you to fill in
+## Part 4 — Optional things you may still want
 
-Small gaps I could not fill from your CV. Each one is a single field in **Site settings**, and the
-site simply hides anything left empty.
+All six profile links, all four certification links, and both project links are filled in from your
+CV. Anything left empty is hidden from the site automatically, so nothing here is urgent.
 
-- **ResearchGate and Web of Science links** — Site settings → Profile links. Your Google Scholar and
-  ORCID links are already filled in; any link left empty is hidden from the site automatically.
-- **Certification links** — your CV has "(view)" links that a PDF cannot hand over. Add them under
-  Certifications if you want them clickable.
-- **Project links** — EchoMind and the voice-controlled desktop manager had links on your CV.
 - **Availability badge** — currently reads "Open to internships, full-time roles, and research
   collaborations". Edit or clear it in Site settings.
 - **Your phone number** is deliberately left off the site to avoid spam. To publish it, fill in Phone
   and switch on "Show phone number publicly".
+- **Hobby photos** — the three Beyond Research sections have text but no images yet. Upload some in
+  **Media**, then add them under **Beyond research**.
+- **Award and talk links** — your CV had a few commented-out links (the NYU CSAW winners page, the
+  HeLLO CTF results, a UMaine news article). Awards and talks have no link field today; ask if you
+  want one added.
+- **A social preview image** — `ogImage` in Site settings is empty, so link previews on LinkedIn and
+  X fall back to your profile photo. That is a reasonable default.
 
 ## Troubleshooting
 
@@ -189,5 +198,11 @@ tab shows a green tick for your latest save.
 **The photo is a broken image.** The filename in Site settings → Profile photo must match the file in
 `public/media/` exactly, including capital letters and the `.jpg` or `.png` ending.
 
-**The domain shows a GitHub 404.** DNS is still propagating, or the custom domain in
-Settings → Pages does not exactly match the domain you bought.
+**The domain shows a GitHub 404.** Almost always the **Custom domain** field in Settings → Pages is
+empty or misspelled. DNS pointing at GitHub is not sufficient on its own: GitHub hosts millions of
+sites on those same four IP addresses and uses that setting to decide which repository your domain
+belongs to. Confirm it reads exactly `tanzim-mahfuz.me`. Failing that, DNS may still be propagating.
+
+**HTTPS shows a certificate warning.** GitHub issues the certificate only after the custom domain is
+saved and verified, which takes a few minutes. Until then use `http://`, and once **Enforce HTTPS**
+is available, tick it.
