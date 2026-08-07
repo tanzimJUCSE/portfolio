@@ -6,57 +6,57 @@ department: Department of Electrical & Computer Engineering
 lab: SIEGE Lab — Secure and Intelligent Edge Research
 advisor: Dr. Prabuddha Chakraborty
 location: Orono, Maine, USA
-
-# The address your site lives at. Change this only if you move to a new domain.
 url: https://tanzim-mahfuz.me
-
 email: tanzim.mahfuz@maine.edu
-phone: ""
 showPhone: false
-
-# Upload a new photo or CV in the Media section, then paste its path here.
 photo: /media/profile.jpg
 cv: /media/Tanzim_Mahfuz_CV.pdf
-
-tagline: >-
-  I use AI to make computer chips harder to attack, and I study how to make AI itself harder to
-  attack.
+tagline: Ph.D. candidate in Electrical and Computer Engineering specializing in
+  explainable, trustworthy, and resilient AI, with published research in top
+  venues including IEEE TIFS, DAC, and CVPR 2026, spanning AI security, hardware
+  security, computer vision, and agentic AI.
 availability: Open to internships, full-time roles, and research collaborations
+bio: >+
+  I am a Ph.D. candidate in Electrical and Computer Engineering at the
+  University of Maine, where my research focuses on building explainable,
+  trustworthy, and resilient AI systems for complex real-world problems. During
+  my Ph.D., I have worked across hardware security, AI security, digital design
+  automation, computer vision, and agentic AI, developing complete research
+  pipelines from problem formulation and data generation to model design,
+  implementation, evaluation, and publication. I led X-DFS, an explainable AI
+  framework for security-aware design-space exploration published in IEEE TIFS,
+  and POLARIS, a machine learning framework for power side-channel mitigation
+  published at DAC. I also co-developed DASH, a differentiable adversarial
+  machine learning framework accepted at CVPR 2026, and have contributed to
+  multi-agent AI research, including systems for tool use, planning,
+  verification, and the evaluation of harmful behavior across interacting
+  agents.
 
-bio: |
-  Almost everything with a plug or a battery — phones, cars, pacemakers, power grids, aircraft —
-  runs on semiconductor chips. Those chips are designed, manufactured, packaged, and tested by
-  dozens of separate companies spread across the world, and no single company ever sees the whole
-  process. That fragmentation creates openings: a design can be stolen and cloned, quietly altered
-  so that it misbehaves years later, or built in a way that unintentionally leaks the very secrets
-  it was meant to protect. Closing those openings is the problem I work on.
+  Alongside my publications, I developed and provisionally filed two patents
+  involving generative and agentic AI for semiconductor design. One focuses on
+  generative AI-based leakage-aware secure hardware transformations, while the
+  other introduces an explainable multi-agent framework for evaluating cross-PDK
+  migration difficulty across multiple technical domains. These projects gave me
+  experience taking an early research idea through system design,
+  implementation, evaluation, collaboration, and intellectual property
+  development.
 
-  My research asks how far artificial intelligence can help. I build systems that read a chip's
-  blueprint the way an experienced security reviewer would, single out the parts most likely to be
-  exploited, and then repair them automatically. Just as importantly, these systems explain
-  themselves: an engineer can see why a particular circuit was flagged instead of being asked to
-  trust a score. That explainability is what turns a prediction into something a design team can
-  act on, and it ties together my work on choosing the right security defenses (X-DFS), catching
-  maliciously inserted circuits (SALTY), and stopping chips from leaking secrets through their
-  power consumption (POLARIS).
-
-  I work on the mirror image of that question too — the security of AI itself. As AI moves out of
-  demonstrations and into infrastructure, it becomes something worth attacking. I study how models
-  can be fooled by inputs deliberately crafted to deceive them (DASH), and how groups of AI agents
-  working together can amplify one another's harmful behavior in ways no single model would (HARP).
-  More recently I have been building agents that plan and carry out an entire hardware security
-  review on their own (LOGIC).
-
-  This work appears in IEEE Transactions on Information Forensics and Security, CVPR, the Design
-  Automation Conference, and IEEE Communications Surveys & Tutorials, and has led to two
-  provisional patents filed with the University of Florida and IN2FAB Technology. I am a Ph.D.
-  candidate at the University of Maine, where I research at the SIEGE Lab under Dr. Prabuddha
-  Chakraborty. Before graduate school I was a software engineer at Robi Axiata Limited in Dhaka,
-  Bangladesh.
+  I am particularly interested in LLM architecture because I believe the
+  architectural principles behind modern language models are reshaping how
+  intelligent systems learn representations, reason across multiple steps, use
+  tools, retain context, and interact with users. I want to understand these
+  systems beyond surface-level application and contribute to the design of
+  models and agentic systems that are reliable, adaptable, and useful in
+  practice. Before beginning my Ph.D., I worked as a full-stack software
+  engineer, which shaped my interest in building systems that are not only
+  technically strong but also scalable, maintainable, and usable by others. The
+  broader goal of my Ph.D. has been to become a researcher and engineer who can
+  enter an unfamiliar domain, understand its core challenge, and independently
+  develop an effective AI-based solution while communicating the work clearly to
+  both technical and non-technical audiences.
 
 interests:
   - Hardware supply chain security
-  - Logic locking & obfuscation
   - Hardware Trojan detection
   - Power & timing side channels
   - Explainable AI (XAI)
@@ -66,7 +66,6 @@ interests:
   - Multi-agent LLM safety
   - Electronic design automation
   - Trustworthy microelectronics
-
 skills:
   - label: Security & Trust
     icon: cpu
@@ -99,8 +98,6 @@ skills:
       - Django
       - Debian
       - Red Hat
-
-# Any link with an empty url is hidden automatically, so you can fill these in over time.
 links:
   - label: Google Scholar
     url: https://scholar.google.com/citations?user=sLUruZIAAAAJ&hl=en
@@ -120,13 +117,11 @@ links:
   - label: Web of Science
     url: https://tinyurl.com/webscience96
     icon: globe
-
-seoDescription: >-
-  Tanzim Mahfuz is a Ph.D. candidate in Electrical and Computer Engineering at the University of
-  Maine. He uses explainable and agentic AI to secure the semiconductor supply chain — hardware
-  Trojan detection, side-channel mitigation, and design-for-security — and researches the security
+seoDescription: Tanzim Mahfuz is a Ph.D. candidate in Electrical and Computer
+  Engineering at the University of Maine. He uses explainable and agentic AI to
+  secure the semiconductor supply chain — hardware Trojan detection,
+  side-channel mitigation, and design-for-security — and researches the security
   of AI systems themselves.
-
 keywords:
   - Tanzim Mahfuz
   - AI for hardware security
@@ -140,31 +135,25 @@ keywords:
   - agentic AI
   - University of Maine
   - SIEGE Lab
-
-ogImage: ""
 footerNote: Updated through a form, not a code editor.
-
 pages:
   publications:
     title: Publications
-    intro: >-
-      Peer-reviewed journal articles, conference papers, patent filings, and manuscripts currently
-      under review.
+    intro: Peer-reviewed journal articles, conference papers, patent filings, and
+      manuscripts currently under review.
   experience:
     title: Experience & Service
-    intro: >-
-      Research and industry roles, teaching, peer review for IEEE and ACM venues, and invited talks
-      and posters.
+    intro: Research and industry roles, teaching, peer review for IEEE and ACM
+      venues, and invited talks and posters.
   awards:
     title: Awards & Recognition
-    intro: >-
-      Competition wins, fellowships, travel grants, and professional certifications.
+    intro: Competition wins, fellowships, travel grants, and professional
+      certifications.
   projects:
     title: Projects
-    intro: >-
-      Course and personal projects spanning robotics, human-computer interaction, IoT, and embedded
-      systems.
+    intro: Course and personal projects spanning robotics, human-computer
+      interaction, IoT, and embedded systems.
   hobbies:
     title: Beyond Research
-    intro: >-
-      Traveling, photography, and the cultural work that keeps me curious outside the lab.
+    intro: Traveling, photography, and the cultural work that keeps me curious
+      outside the lab.
