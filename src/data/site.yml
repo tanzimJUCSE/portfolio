@@ -18,24 +18,41 @@ showPhone: false
 photo: /media/profile.jpg
 cv: /media/Tanzim_Mahfuz_CV.pdf
 
-tagline: Explainable and agentic AI for securing the microelectronics supply chain.
+tagline: >-
+  I use AI to make computer chips harder to attack, and I study how to make AI itself harder to
+  attack.
 availability: Open to internships, full-time roles, and research collaborations
 
 bio: |
-  I am a Ph.D. candidate in Electrical and Computer Engineering at the University of Maine, where I
-  research at the SIEGE Lab under Dr. Prabuddha Chakraborty. My work centers on one question: can
-  artificial intelligence explain, and then improve, the security of the hardware everything else
-  runs on?
+  Almost everything with a plug or a battery — phones, cars, pacemakers, power grids, aircraft —
+  runs on semiconductor chips. Those chips are designed, manufactured, packaged, and tested by
+  dozens of separate companies spread across the world, and no single company ever sees the whole
+  process. That fragmentation creates openings: a design can be stolen and cloned, quietly altered
+  so that it misbehaves years later, or built in a way that unintentionally leaks the very secrets
+  it was meant to protect. Closing those openings is the problem I work on.
 
-  I build explainable and agentic AI systems that find, quantify, and repair vulnerabilities in
-  digital designs — from design-for-security solution space exploration (X-DFS) and hardware Trojan
-  detection (SALTY) to power side-channel leakage mitigation (POLARIS) and LLM-orchestrated
-  frameworks for secure hardware design optimization.
+  My research asks how far artificial intelligence can help. I build systems that read a chip's
+  blueprint the way an experienced security reviewer would, single out the parts most likely to be
+  exploited, and then repair them automatically. Just as importantly, these systems explain
+  themselves: an engineer can see why a particular circuit was flagged instead of being asked to
+  trust a score. That explainability is what turns a prediction into something a design team can
+  act on, and it ties together my work on choosing the right security defenses (X-DFS), catching
+  maliciously inserted circuits (SALTY), and stopping chips from leaking secrets through their
+  power consumption (POLARIS).
 
-  This research has appeared in IEEE Transactions on Information Forensics and Security, CVPR, the
-  Design Automation Conference, and IEEE Communications Surveys & Tutorials, and has led to two
-  provisional patents filed jointly with the University of Florida and IN2FAB Technology. Before
-  graduate school I worked as a software engineer at Robi Axiata Limited in Dhaka, Bangladesh.
+  I work on the mirror image of that question too — the security of AI itself. As AI moves out of
+  demonstrations and into infrastructure, it becomes something worth attacking. I study how models
+  can be fooled by inputs deliberately crafted to deceive them (DASH), and how groups of AI agents
+  working together can amplify one another's harmful behavior in ways no single model would (HARP).
+  More recently I have been building agents that plan and carry out an entire hardware security
+  review on their own (LOGIC).
+
+  This work appears in IEEE Transactions on Information Forensics and Security, CVPR, the Design
+  Automation Conference, and IEEE Communications Surveys & Tutorials, and has led to two
+  provisional patents filed with the University of Florida and IN2FAB Technology. I am a Ph.D.
+  candidate at the University of Maine, where I research at the SIEGE Lab under Dr. Prabuddha
+  Chakraborty. Before graduate school I was a software engineer at Robi Axiata Limited in Dhaka,
+  Bangladesh.
 
 interests:
   - Hardware supply chain security
@@ -44,6 +61,9 @@ interests:
   - Power & timing side channels
   - Explainable AI (XAI)
   - Agentic AI & large language models
+  - Security of AI systems
+  - Adversarial machine learning
+  - Multi-agent LLM safety
   - Electronic design automation
   - Trustworthy microelectronics
 
@@ -103,16 +123,21 @@ links:
 
 seoDescription: >-
   Tanzim Mahfuz is a Ph.D. candidate in Electrical and Computer Engineering at the University of
-  Maine researching explainable and agentic AI for hardware security, side-channel mitigation, and
-  trustworthy microelectronics.
+  Maine. He uses explainable and agentic AI to secure the semiconductor supply chain — hardware
+  Trojan detection, side-channel mitigation, and design-for-security — and researches the security
+  of AI systems themselves.
 
 keywords:
   - Tanzim Mahfuz
-  - hardware security
+  - AI for hardware security
+  - security of AI
+  - semiconductor supply chain security
   - explainable AI
   - hardware Trojan detection
   - logic locking
   - side-channel analysis
+  - adversarial machine learning
+  - agentic AI
   - University of Maine
   - SIEGE Lab
 
