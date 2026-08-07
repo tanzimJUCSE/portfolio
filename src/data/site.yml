@@ -7,14 +7,13 @@ lab: SIEGE Lab — Secure and Intelligent Edge Research
 advisor: Dr. Prabuddha Chakraborty
 location: Old Town, Maine, USA
 url: https://tanzim-mahfuz.me
-email: ""
 showPhone: false
 photo: /media/profile.jpg
 cv: /media/Tanzim_Mahfuz_CV.pdf
-tagline: Ph.D. candidate in Electrical and Computer Engineering specializing in
-  explainable, trustworthy, and resilient AI, with published research in top
-  venues including IEEE TIFS, DAC, and CVPR 2026, spanning AI security, hardware
-  security, computer vision, and agentic AI.
+tagline: Specializing in explainable, trustworthy, and resilient AI, with
+  published research in top venues including IEEE TIFS, COMST, DAC, and CVPR
+  2026, spanning AI security, hardware security, computer vision, and agentic
+  AI.
 availability: Open to internships, full-time roles, and research collaborations
 bio: >+
   I am a Ph.D. candidate in Electrical and Computer Engineering at the
@@ -135,7 +134,6 @@ keywords:
   - agentic AI
   - University of Maine
   - SIEGE Lab
-footerNote: ""
 pages:
   publications:
     title: Publications
