@@ -180,7 +180,6 @@ content:
             fields:
               - { name: title, label: Title, type: string }
               - { name: intro, label: Intro, type: text }
-
   # ---------------------------------------------------------------- News
   - name: news
     label: News & updates

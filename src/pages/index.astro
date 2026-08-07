@@ -16,7 +16,6 @@ import {
 const bio = paragraphs(site.bio);
 const latestNews = news.slice(0, 5);
 const featured = featuredWork.slice(0, 5);
-const scholar = site.links.find((link) => link.icon === 'scholar');
 ---
 
 <BaseLayout>
@@ -55,13 +54,6 @@ const scholar = site.links.find((link) => link.icon === 'scholar');
               site.email && (
                 <a class="btn" href={`mailto:${site.email}`}>
                   <Icon name="mail" size={16} /> Get in touch
-                </a>
-              )
-            }
-            {
-              scholar && (
-                <a class="btn btn--ghost" href={scholar.url} target="_blank" rel="noopener">
-                  <Icon name="scholar" size={16} /> Google Scholar
                 </a>
               )
             }
@@ -284,42 +276,4 @@ const scholar = site.links.find((link) => link.icon === 'scholar');
       </section>
     )
   }
-
-  <section class="section" id="contact">
-    <div class="container">
-      <div class="cta">
-        <div>
-          <span class="eyebrow">Contact</span>
-          <h2 class="mt-1">Let's talk about hardware security</h2>
-        </div>
-        <p>
-          I am always glad to hear from researchers, students, and teams working on trustworthy
-          microelectronics, side-channel analysis, or AI for design automation.
-        </p>
-        <div class="btn-row">
-          {
-            site.email && (
-              <a class="btn btn--primary" href={`mailto:${site.email}`}>
-                <Icon name="mail" size={16} /> {site.email}
-              </a>
-            )
-          }
-          {
-            site.showPhone && site.phone && (
-              <a class="btn" href={`tel:${site.phone.replace(/\s+/g, '')}`}>
-                {site.phone}
-              </a>
-            )
-          }
-          {
-            site.cv && (
-              <a class="btn btn--ghost" href={site.cv} target="_blank" rel="noopener">
-                <Icon name="download" size={16} /> Curriculum vitae
-              </a>
-            )
-          }
-        </div>
-      </div>
-    </div>
-  </section>
 </BaseLayout>

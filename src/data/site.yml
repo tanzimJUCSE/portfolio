@@ -5,8 +5,9 @@ affiliation: University of Maine
 department: Department of Electrical & Computer Engineering
 lab: SIEGE Lab — Secure and Intelligent Edge Research
 advisor: Dr. Prabuddha Chakraborty
-location: Orono, Maine, USA
+location: Old Town, Maine, USA
 url: https://tanzim-mahfuz.me
+email: ""
 showPhone: false
 photo: /media/profile.jpg
 cv: /media/Tanzim_Mahfuz_CV.pdf
@@ -134,7 +135,7 @@ keywords:
   - agentic AI
   - University of Maine
   - SIEGE Lab
-footerNote: Updated through a form, not a code editor.
+footerNote: ""
 pages:
   publications:
     title: Publications
