@@ -5,6 +5,9 @@ dist/
 .vercel/
 .netlify/
 
+# Private notes, kept off GitHub
+personal.md
+
 # Environment / editor / OS noise
 .env
 .env.*
